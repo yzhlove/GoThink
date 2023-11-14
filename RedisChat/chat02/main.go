@@ -10,7 +10,7 @@ import (
 //go:generate msgp -tests=false -io=false
 
 type Msg struct {
-	Data    string
+	Data    []byte
 	Version int64
 }
 
@@ -26,7 +26,7 @@ func main() {
 		go func(i int) {
 			defer wg.Done()
 			msg := &Msg{
-				Data:    "hello world",
+				Data:    []byte("hello world"),
 				Version: int64(i + 1),
 			}
 			if err := UpdateMsg(msg); err != nil {
